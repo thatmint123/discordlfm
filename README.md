@@ -1,5 +1,7 @@
 #discordlfm - Discord Last FM 
 
+![Image](https://dl.dropboxusercontent.com/u/17487167/keep/1476569294.png)
+
 Sets your "game" to the last song played on your last.fm
 
 Usage:
