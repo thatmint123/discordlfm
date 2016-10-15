@@ -36,6 +36,12 @@ func main() {
 		log.Fatal("No lastfm api key specified")
 	}
 
+	if flagLFMUsername == "" {
+		log.Fatal("No last.fm username specified")
+	}
+
+	log.Println("Starting up...")
+
 	// Setup lastfm
 	lfm := lastfm.New(flagLFMAPIKey, "")
 
@@ -58,7 +64,7 @@ func main() {
 
 	wg.Wait()
 
-	log.Println("Running... Ctrl-c to stop.")
+	log.Println("Ready received! Ctrl-c to stop.")
 	run(dsession, lfm)
 }
 
