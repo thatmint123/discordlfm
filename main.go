@@ -63,6 +63,7 @@ func main() {
 }
 
 func run(s *discordgo.Session, lfm *lastfm.Api) {
+	// Run continously untill somethign catches fire or an std
 	ticker := time.NewTicker(time.Second * 10)
 
 	lastPlaying := ""
@@ -75,9 +76,11 @@ func run(s *discordgo.Session, lfm *lastfm.Api) {
 		playing, err := check(lfm)
 		if err != nil {
 			log.Println("Error checking:", err)
+			continue
 		}
 
 		if playing == lastPlaying {
+
 			if !setFallback && time.Since(lastPlayingTime).Seconds() > float64(flagNoSongDuration) {
 
 				err = s.UpdateStatus(0, flagNoSong)
@@ -89,9 +92,8 @@ func run(s *discordgo.Session, lfm *lastfm.Api) {
 				}
 
 			}
-		}
+		} else {
 
-		if playing != lastPlaying {
 			err = s.UpdateStatus(0, playing)
 			if err != nil {
 				log.Println("Error updating status:", err)
